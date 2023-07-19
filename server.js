@@ -25,6 +25,7 @@ app.use("/api/chat", chatRoutes);
 app.use("/api/message", messageRoutes);
 
 
+
 // Error Handling middlewares
 app.use(notFound);
 app.use(errorHandler);
@@ -50,6 +51,7 @@ io.on("connection", (socket) => {
     socket.emit("connected");
   });
 
+  
   socket.on("join chat", (room) => {
     socket.join(room);
     console.log("User Joined Room: " + room);
