@@ -50,11 +50,10 @@ if (process.env.NODE_ENV === "production") {
 app.use(notFound);
 app.use(errorHandler);
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT  || 5000;
 
 const server = app.listen(
   PORT,
-  
   console.log(`Server running on PORT ${PORT}...`.yellow.bold)
 );
 
@@ -77,6 +76,7 @@ io.on("connection", (socket) => {
     socket.join(room);
     console.log("User Joined Room: " + room);
   });
+
   socket.on("typing", (room) => socket.in(room).emit("typing"));
   socket.on("stop typing", (room) => socket.in(room).emit("stop typing"));
 
